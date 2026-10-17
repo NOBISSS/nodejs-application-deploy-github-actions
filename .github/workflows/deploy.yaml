@@ -1,4 +1,4 @@
-name:Deploy NodeJS Application And Make CI-CD
+name: Deploy NodeJS Application And Make CI-CD
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
 
 jobs:
   deploy:
-    runs-on:ubuntu-latest
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout Code
@@ -18,9 +18,9 @@ jobs:
         with:
           host: ${{ secrets.SSH_HOST }}
           username: root
-          key:${{secrets.SSH_KEY}}
+          key: ${{secrets.SSH_KEY}}
           scripts:
             cd /home/ubuntu/nodejs-application-deploy-github-actions
             git pull
             docker compose up -d --build
-            
+
