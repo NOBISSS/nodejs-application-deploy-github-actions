@@ -3,7 +3,7 @@ name: Deploy NodeJS Application And Make CI-CD
 'on':
   push:
     branches:
-      -main
+      - main
 
 jobs:
   deploy:
@@ -11,16 +11,15 @@ jobs:
 
     steps:
       - name: Checkout Code
-       uses: actions/checkout@v4
+        uses: actions/checkout@v4
 
       - name: Deploy Via SSH
-        uses: appleboy/ssh-action@1.0.3
+        uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.SSH_HOST }}
-          username: root
-          key: ${{secrets.SSH_KEY}}
-          scripts:
+          username: ubuntu
+          key: ${{ secrets.SSH_KEY }}
+          script: |
             cd /home/ubuntu/nodejs-application-deploy-github-actions
-            git pull
-            docker compose up -d --build
-
+            git pull origin main
+            sudo docker compose up -d --build
