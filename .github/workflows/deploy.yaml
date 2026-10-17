@@ -1,6 +1,6 @@
 name: Deploy NodeJS Application And Make CI-CD
 
-on:
+'on':
   push:
     branches:
       -main
